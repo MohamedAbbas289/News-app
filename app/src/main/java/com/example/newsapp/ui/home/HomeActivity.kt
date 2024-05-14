@@ -8,7 +8,7 @@ import com.example.newsapp.ui.home.news.NewsFragment
 
 
 class HomeActivity : AppCompatActivity() {
-    lateinit var binding: ActivityHomeBinding
+    private lateinit var binding: ActivityHomeBinding
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         binding = ActivityHomeBinding.inflate(layoutInflater)
