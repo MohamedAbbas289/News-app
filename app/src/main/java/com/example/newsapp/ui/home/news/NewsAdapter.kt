@@ -30,6 +30,11 @@ class NewsAdapter(var newsList: List<News?>? = null) :
     override fun onBindViewHolder(holder: ViewHolder, position: Int) {
         val news = newsList!![position]
         holder.bind(news)
+        if (onItemClickListener != null) {
+            holder.itemView.rootView.setOnClickListener {
+                onItemClickListener?.onItemClick(news)
+            }
+        }
     }
 
     fun bindNews(articles: List<News?>?) {
@@ -37,4 +42,9 @@ class NewsAdapter(var newsList: List<News?>? = null) :
         notifyDataSetChanged()
     }
 
+    var onItemClickListener: OnItemClickListener? = null
+
+    fun interface OnItemClickListener {
+        fun onItemClick(news: News?)
+    }
 }
