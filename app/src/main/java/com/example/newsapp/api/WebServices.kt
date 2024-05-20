@@ -10,7 +10,10 @@ import retrofit2.http.Query
 interface WebServices {
 
     @GET("/v2/top-headlines/sources")
-    fun getSources(@Query("apiKey") apiKey: String = API_KEY): Call<SourcesResponse>
+    fun getSources(
+        @Query("apiKey") apiKey: String = API_KEY,
+        @Query("category") category: String
+    ): Call<SourcesResponse>
 
     @GET("v2/everything")
     fun getNews(
