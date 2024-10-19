@@ -2,7 +2,7 @@ package com.example.newsapp.ui.home.news.newsDetails
 
 import android.os.Bundle
 import androidx.appcompat.app.AppCompatActivity
-import com.example.newsapp.api.model.newsResponse.News
+import com.example.newsapp.data.api.model.newsResponse.News
 import com.example.newsapp.databinding.ActivityNewsDetailsBinding
 
 class NewsDetailsActivity : AppCompatActivity() {

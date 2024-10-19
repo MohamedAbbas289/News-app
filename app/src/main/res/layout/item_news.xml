@@ -6,7 +6,7 @@
 
         <variable
             name="news"
-            type="com.example.newsapp.api.model.newsResponse.News" />
+            type="com.example.newsapp.data.api.model.newsResponse.News" />
     </data>
 
     <LinearLayout

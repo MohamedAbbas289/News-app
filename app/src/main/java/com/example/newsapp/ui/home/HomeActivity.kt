@@ -10,8 +10,9 @@ import com.example.newsapp.localModel.Category
 import com.example.newsapp.ui.home.categories.CategoriesFragment
 import com.example.newsapp.ui.home.news.NewsFragment
 import com.example.newsapp.ui.home.settings.SettingsFragment
+import dagger.hilt.android.AndroidEntryPoint
 
-
+@AndroidEntryPoint
 class HomeActivity : AppCompatActivity(), CategoriesFragment.OnCategoryClickListener {
     private lateinit var binding: ActivityHomeBinding
     private var categoriesFragment = CategoriesFragment()

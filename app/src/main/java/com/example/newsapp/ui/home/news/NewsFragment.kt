@@ -12,19 +12,22 @@ import androidx.lifecycle.ViewModelProvider
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import androidx.recyclerview.widget.RecyclerView.OnScrollListener
-import com.example.newsapp.api.model.sourcesResponse.Source
+import com.example.newsapp.data.api.model.sourcesResponse.Source
 import com.example.newsapp.databinding.FragmentNewsBinding
 import com.example.newsapp.localModel.Category
 import com.example.newsapp.ui.ViewError
 import com.example.newsapp.ui.home.news.newsDetails.NewsDetailsActivity
 import com.example.newsapp.ui.showMessage
 import com.google.android.material.tabs.TabLayout
+import dagger.hilt.android.AndroidEntryPoint
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.delay
 import kotlinx.coroutines.launch
 import kotlinx.coroutines.withContext
+import javax.inject.Inject
 
+@AndroidEntryPoint
 class NewsFragment : Fragment() {
     private lateinit var binding: FragmentNewsBinding
     lateinit var viewModel: NewsViewModel
@@ -69,7 +72,7 @@ class NewsFragment : Fragment() {
 
         viewModel.sourcesLivedata.observe(viewLifecycleOwner) { sources ->
             bindTabs(sources)
-            viewModel.getNews(sourceObj.id, currentPage, pageSize)
+            viewModel.getNews(sourceObj, currentPage, pageSize)
         }
 
         viewModel.newsLivedata.observe(viewLifecycleOwner) { news ->
@@ -82,7 +85,8 @@ class NewsFragment : Fragment() {
 
     }
 
-    private val adapter = NewsAdapter()
+    @Inject
+    lateinit var adapter: NewsAdapter
     private fun initViews() {
         binding.recyclerView.adapter = adapter
         binding.recyclerView.addOnScrollListener(object : OnScrollListener() {
@@ -100,7 +104,7 @@ class NewsFragment : Fragment() {
 
                         // Call the viewModel.getNews() method on the main thread
                         withContext(Dispatchers.Main) {
-                            viewModel.getNews(sourceObj.id, currentPage, pageSize)
+                            viewModel.getNews(sourceObj, currentPage, pageSize)
                             isLoading = false
                         }
                     }
@@ -131,7 +135,7 @@ class NewsFragment : Fragment() {
             override fun onTabSelected(tab: TabLayout.Tab?) {
                 val source = tab?.tag as Source
                 sourceObj = source
-                viewModel.getNews(source.id, currentPage, pageSize)
+                viewModel.getNews(source, currentPage, pageSize)
             }
 
             override fun onTabUnselected(tab: TabLayout.Tab?) {
@@ -141,7 +145,7 @@ class NewsFragment : Fragment() {
             override fun onTabReselected(tab: TabLayout.Tab?) {
                 val source = tab?.tag as Source
                 sourceObj = source
-                viewModel.getNews(source.id, currentPage, pageSize)
+                viewModel.getNews(source, currentPage, pageSize)
             }
 
         })
