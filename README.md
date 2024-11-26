@@ -47,10 +47,10 @@ The project follows the Clean Architecture pattern, which separates the codebase
 
 ## Configuration
 
-- Replace the API key in `local.properties` with your own API key:
+- Replace the API key in `ApiConstants` with your own API key:
 
   ```properties
-  NEWS_API_KEY=your_api_key_here
+  API_KEY=your_api_key_here
   ```
 
   You can obtain an API key from [News API](https://newsapi.org/).
