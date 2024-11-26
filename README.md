@@ -65,11 +65,6 @@ Contributions are welcome! To contribute:
 4. Push your branch and open a pull request.
 
 
-## Acknowledgments
-
-- [News API](https://newsapi.org/) for providing news data.
-- Android community for development resources and inspiration.
-
 ## Contact
 
 For any inquiries or feedback, feel free to contact:
